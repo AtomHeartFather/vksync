@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VK API</title>
+</head>
+<body>
+
+
+<!-- 8d0d482c176306069763808556a40e69d17e781dd4ae0ba63304e36d47d480569cb0c1540926015cc10b4 -->
+
+<script src="jquery-3.4.1.js"></script>
+<script>
+	
+//	function getUrl(method,params) {
+//		if (!method) throw new Error('Вы не указали метод!');
+//		params = params || {};
+//		params['access_token'] = '8d0d482c176306069763808556a40e69d17e781dd4ae0ba63304e36d47d480569cb0c1540926015cc10b4';
+//		return 'https://api.vk.com/method/' + method + '?' + $.param(params);
+//	}
+
+//	function sendRequest(method, params) {
+//	$.ajax({
+//		url: getUrl('friends_getOnline', {user_id: '10668332'}),
+//		method: 'GET',
+//		dataType: 'JSONP',
+//		success: function (data) {
+//			console.log(data);
+//			}
+//	});
+//	}
+
+	$.ajax({
+		url: 'https://api.vk.com/method/friends.getOnline?user_id=10668332&access_token=8d0d482c176306069763808556a40e69d17e781dd4ae0ba63304e36d47d480569cb0c1540926015cc10b4&v=5.103',
+		method: 'GET',
+		dataType: 'JSONP',
+		success: function (data) {
+			console.log(data);
+			}
+	});
+
+	$.ajax({
+		url: 'https://api.vk.com/method/friends.search?user_id=10668332&count=999&access_token=8d0d482c176306069763808556a40e69d17e781dd4ae0ba63304e36d47d480569cb0c1540926015cc10b4&v=5.103',
+		method: 'GET',
+		dataType: 'JSONP',
+		success: function (data) {
+			console.log(data);
+			}
+	});
+
+	
+
+</script>
+
+
+</body>
+</html>
