@@ -6,12 +6,14 @@
 </head>
 <body>
 
-
 <!-- 8d0d482c176306069763808556a40e69d17e781dd4ae0ba63304e36d47d480569cb0c1540926015cc10b4 -->
 
 <script src="jquery-3.4.1.js"></script>
+
+Время: <div id="now"></div>
+
 <script>
-	
+
 //	function getUrl(method,params) {
 //		if (!method) throw new Error('Вы не указали метод!');
 //		params = params || {};
@@ -30,14 +32,75 @@
 //	});
 //	}
 
+/*https://oauth.vk.com/authorize?client_id=7265924&display=page&scope=friends,status,offline&response_type=token&v=5.52*/
+
+/*https://oauth.vk.com/blank.html#access_token=8c595af63d069a391d7d72976a47ed1fb05d831081cf9332bdfe2e4e9e4a57674eb871d7f35f07f08c115&expires_in=0&user_id=10668332*/
+
+/*https://oauth.vk.com/blank.html#access_token=8c595af63d069a391d7d72976a47ed1fb05d831081cf9332bdfe2e4e9e4a57674eb871d7f35f07f08c115&expires_in=0&user_id=10668332
+*/
 	$.ajax({
-		url: 'https://api.vk.com/method/friends.getOnline?user_id=10668332&access_token=8d0d482c176306069763808556a40e69d17e781dd4ae0ba63304e36d47d480569cb0c1540926015cc10b4&v=5.103',
+		url: 'https://api.vk.com/method/friends.get?user_id=10668332&access_token=8c595af63d069a391d7d72976a47ed1fb05d831081cf9332bdfe2e4e9e4a57674eb871d7f35f07f08c115&v=5.103',
 		method: 'GET',
 		dataType: 'JSONP',
 		success: function (data) {
 			console.log(data);
 			}
 	});
+
+	$.ajax({
+		url: 'https://api.vk.com/method/status.get?user_id=553057&access_token=8c595af63d069a391d7d72976a47ed1fb05d831081cf9332bdfe2e4e9e4a57674eb871d7f35f07f08c115&v=5.103',
+		method: 'GET',
+		dataType: 'JSONP',
+		success: function (data) {
+			console.log(data);
+			}
+	});
+
+	$.ajax({
+		url: 'https://api.vk.com/method/users.get?user_id=10668332&access_token=8c595af63d069a391d7d72976a47ed1fb05d831081cf9332bdfe2e4e9e4a57674eb871d7f35f07f08c115&fields=online&v=5.103',
+		method: 'GET',
+		dataType: 'JSONP',
+		success: function (data) {
+			console.log(data);
+			}
+	});
+
+//var now = new Date();
+//console.log(now);
+
+//document.getElementById("now").innerHTML = now;
+
+function testOnlineLog(){
+  $.ajax({
+		url: 'https://api.vk.com/method/users.get?user_id=10668332&access_token=8c595af63d069a391d7d72976a47ed1fb05d831081cf9332bdfe2e4e9e4a57674eb871d7f35f07f08c115&fields=online&v=5.103',
+		method: 'GET',
+		dataType: 'JSONP',
+		success: function (data) {
+			console.log(data.response[0].online);
+			//alert(data[0][5]);
+			//alert(JSON.stringify(data));
+			//console.log(data[0].online);
+			var now = new Date();
+			//document.getElementById("now").innerHTML = data[5].online;
+			//alert(data[5].online);
+			document.getElementById("now").innerHTML += "<h2>" + data.response[0].online + "</h2>" + now + "</br>";
+			//document.getElementById("now").innerHTML = now;
+			//alert( arr[1].name ); // Джон
+
+			}
+	});
+}
+testOnlineLog();
+setInterval( testOnlineLog, 300000 );
+
+
+
+
+/*	
+https://vk.com/dev/friends.getLists
+https://vk.com/dev/status.get
+https://vk.com/dev/users.get
+
 
 	$.ajax({
 		url: 'https://api.vk.com/method/friends.search?user_id=10668332&count=999&access_token=8d0d482c176306069763808556a40e69d17e781dd4ae0ba63304e36d47d480569cb0c1540926015cc10b4&v=5.103',
@@ -47,10 +110,11 @@
 			console.log(data);
 			}
 	});
-
+*/
 	
 
 </script>
+
 
 
 </body>
